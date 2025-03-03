@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
@@ -22,15 +22,17 @@ const Carousel = ({ images }: CarouselProps) => {
   };
 
   return (
-    <div className="relative w-full h-64">
+    <div className="relative w-full h-72 px-6 mt-4"> {/* Añade padding horizontal (px-4) */}
       <div
         style={{ backgroundImage: `url(${images[currentIndex]})` }}
-        className="w-full h-full bg-center bg-cover duration-500"
+        className="w-full h-full bg-center bg-cover duration-500 rounded-3xl"
       ></div>
-      <div className="absolute top-1/2 transform -translate-y-1/2 left-5 cursor-pointer">
+      {/* Flecha izquierda con margen ajustado */}
+      <div className="absolute top-1/2 transform -translate-y-1/2 left-9 cursor-pointer">
         <ChevronLeftIcon className="h-8 w-8 text-white" onClick={prevSlide} />
       </div>
-      <div className="absolute top-1/2 transform -translate-y-1/2 right-5 cursor-pointer">
+      {/* Flecha derecha con margen ajustado */}
+      <div className="absolute top-1/2 transform -translate-y-1/2 right-9 cursor-pointer">
         <ChevronRightIcon className="h-8 w-8 text-white" onClick={nextSlide} />
       </div>
     </div>
