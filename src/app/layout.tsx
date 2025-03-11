@@ -2,9 +2,10 @@ import { League_Spartan } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import CarouselCategories from "@/components/ui/CarouselCategories";
+import BannerCards from "@/components/ui/BannerCards";
 import Carousel from "@/components/ui/Carousel";
+import CarouselProducts from "@/components/products/CarouselProducts";
 import { categories } from "@/data/data"; // Asegúrate de que esto tenga la estructura correcta
-
 
 const leagueSpartan = League_Spartan({
   variable: "--font-league-spartan",
@@ -19,7 +20,7 @@ export const metadata = {
 const images = [
   "/donofrio.jpg",
   "/imagen.png",
-  "/papel.png"
+  "/papel.png",
 ];
 
 export default function RootLayout({
@@ -27,25 +28,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Extrae los nombres de las categorías
-  const categoryNames = categories.map(category => category.name);
+  const categoryNames = categories.map((category) => category.name);
 
   return (
     <html lang="en">
       <body className={`${leagueSpartan.variable} antialiased`}>
-        {/* Header con las categorías */}
         <Header categories={categories} />
-
-        {/* Contenido principal */}
-        <main>
-          {/* Carrusel de imágenes */}
+        <main className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-6">
           <Carousel images={images} />
-          <CarouselCategories />
-
-          {/* Contenido dinámico (páginas) */}
+          <CarouselCategories title="Explora nuestras categorías" />
+          <CarouselProducts title="OFERTA de tus lacteos favoritos" />
+          <BannerCards />
           {children}
-
-          
         </main>
       </body>
     </html>

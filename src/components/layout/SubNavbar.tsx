@@ -5,6 +5,7 @@ interface SubNavbarProps {
   categories: { name: string; subcategories: string[] }[];
 }
 
+
 const SubNavbar = ({ categories }: SubNavbarProps) => {
   const quickAccessCategories = categories.slice(0, 9); // Solo las primeras 5 categorías
 

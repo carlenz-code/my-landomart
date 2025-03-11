@@ -2,32 +2,28 @@
 
 import { useState, useEffect } from "react";
 import CarouselHeader from "../ui/CarouselHeader";
-import CategoryCard from "./Categories/CategoryCard";
-import { categories as defaultCategories, Category } from "@/data/data";
+import ProductCard from "./ProductCard";
+import { products as defaultProducts, Product } from "@/data/data"; // Importamos los productos y el tipo
 
-interface CarouselCategoriesProps {
+interface CarouselProductsProps {
   title: string;
-  categories?: Category[];
-  onViewAll?: () => void;
+  products?: Product[];
+  onViewAll?: () => void; // Mantengo la prop opcional por si el usuario quiere personalizarla
 }
 
-const CarouselCategories = ({
-  title,
-  categories = defaultCategories,
-  onViewAll,
-}: CarouselCategoriesProps) => {
+const CarouselProducts = ({ title, products = defaultProducts, onViewAll }: CarouselProductsProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const cardWidth = 150;
-  const gap = 24;
+  const [touchStart, setTouchStart] = useState<number | null>(null); // Posición inicial del toque
+  const cardWidth = 185; // Ancho fijo de ProductCard
+  const gap = 24; // Espaciado entre cards
 
   useEffect(() => {
     const updateItems = () => {
-      const containerWidth = window.innerWidth - 48;
+      const containerWidth = window.innerWidth - 48; // Restamos el padding total (24px izquierda + 24px derecha del RootLayout)
       const newVisibleItems = Math.min(
         Math.floor(containerWidth / (cardWidth + gap)),
-        categories.length
+        products.length
       );
       setVisibleItems(newVisibleItems);
     };
@@ -35,10 +31,10 @@ const CarouselCategories = ({
     updateItems();
     window.addEventListener("resize", updateItems);
     return () => window.removeEventListener("resize", updateItems);
-  }, [categories.length]);
+  }, [products.length]);
 
   const handleNext = () => {
-    const maxIndex = Math.max(0, categories.length - visibleItems);
+    const maxIndex = Math.max(0, products.length - visibleItems);
     setCurrentIndex((prev) => (prev + 1 >= maxIndex ? maxIndex : prev + 1));
   };
 
@@ -58,30 +54,30 @@ const CarouselCategories = ({
 
     if (deltaX > 50) {
       handleNext();
-      setTouchStart(null);
+      setTouchStart(null); // Reiniciamos después de mover
     } else if (deltaX < -50) {
       handlePrev();
-      setTouchStart(null);
+      setTouchStart(null); // Reiniciamos después de mover
     }
   };
 
   const handleTouchEnd = () => {
-    setTouchStart(null);
+    setTouchStart(null); // Reiniciamos al soltar
   };
 
-  const totalWidth = categories.length * (cardWidth + gap);
+  const totalWidth = products.length * (cardWidth + gap);
 
   const defaultViewAll = () => {
-    console.log("Ver todo clicado (categorías)");
+    console.log("Ver todo clicado (acción por defecto)"); // Acción por defecto
   };
 
   return (
-    <div className="bg-white py-4">
+    <div className="bg-white py-4"> {/* Sin px-6, ya está manejado por el RootLayout */}
       <CarouselHeader
         title={title}
         onPrev={handlePrev}
         onNext={handleNext}
-        onViewAll={onViewAll || defaultViewAll}
+        onViewAll={onViewAll || defaultViewAll} // Usa la prop si existe, sino la acción por defecto
       />
       <div
         className="overflow-hidden"
@@ -93,24 +89,17 @@ const CarouselCategories = ({
           className="relative"
           style={{
             maxWidth: `${visibleItems * (cardWidth + gap)}px`,
-            marginRight: "auto",
-            width: "100%",
-            boxSizing: "border-box",
+            marginRight: "auto", // Mantengo como lo tenías
+            width: "100%", // Asegura que ocupe el ancho completo antes de centrar
+            boxSizing: "border-box", // Incluye padding y borde en el cálculo del ancho
           }}
         >
           <div
             className="flex transition-transform duration-300 ease-in-out"
-            style={{
-              width: `${totalWidth}px`,
-              transform: `translateX(-${currentIndex * (cardWidth + gap)}px)`,
-            }}
+            style={{ width: `${totalWidth}px`, transform: `translateX(-${currentIndex * (cardWidth + gap)}px)` }}
           >
-            {categories.map((category) => (
-              <CategoryCard
-                key={category.id}
-                category={category}
-                style={{ marginRight: `${gap}px` }}
-              />
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} style={{ marginRight: `${gap}px` }} />
             ))}
           </div>
         </div>
@@ -119,4 +108,4 @@ const CarouselCategories = ({
   );
 };
 
-export default CarouselCategories;
+export default CarouselProducts;

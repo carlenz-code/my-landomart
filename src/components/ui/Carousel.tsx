@@ -22,7 +22,7 @@ const Carousel = ({ images }: CarouselProps) => {
   };
 
   return (
-    <div className="relative w-full h-72 px-6 mt-4"> {/* Añade padding horizontal (px-4) */}
+    <div className="relative w-full h-72  mt-4"> {/* Añade padding horizontal (px-4) */}
       <div
         style={{ backgroundImage: `url(${images[currentIndex]})` }}
         className="w-full h-full bg-center bg-cover duration-500 rounded-3xl"
