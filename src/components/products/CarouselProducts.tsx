@@ -72,7 +72,7 @@ const CarouselProducts = ({ title, products = defaultProducts, onViewAll }: Caro
   };
 
   return (
-    <div className="bg-white py-4"> {/* Sin px-6, ya está manejado por el RootLayout */}
+    <div className="bg-white "> {/* Sin px-6, ya está manejado por el RootLayout */}
       <CarouselHeader
         title={title}
         onPrev={handlePrev}

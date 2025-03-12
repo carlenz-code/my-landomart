@@ -26,7 +26,8 @@ const Navbar = ({ categories }: HeaderProps) => {
 
   return (
     <>
-      <header className="bg-yellow-400 border-b shadow-sm">
+      {/* Header fijo */}
+      <header className="fixed top-0 left-0 w-full bg-yellow-400 border-b shadow-sm z-50">
         <div className="flex items-center justify-between h-[74px] px-6 text-base font-medium w-full">
           {/* Menú móvil */}
           <button
@@ -81,7 +82,7 @@ const Navbar = ({ categories }: HeaderProps) => {
                 </div>
               </button>
               <button
-                className="h-[42px] pl-3 pr-5 bg-yellow-600 text-white rounded-full hover:bg-blue-600 flex items-center space-x-1"
+                className="h-[42px] pl-3 pr-5 bg-yellow-100 text-orange-400 rounded-full hover:bg-blue-600 flex items-center space-x-1"
                 aria-label="Iniciar sesión"
               >
                 <UserCircleIcon className="h-8 w-8" />
@@ -105,7 +106,7 @@ const Navbar = ({ categories }: HeaderProps) => {
         </div>
       </header>
 
-      {/* Menú lateral (móviles/tablets) */}
+      {/* Menú lateral (móviles/tabletas) */}
       {isMenuOpen && (
         <div className="absolute top-0 left-0 w-64 h-screen bg-white shadow-lg lg:hidden z-50">
           <div className="flex items-center justify-between px-4 py-4 border-b">
@@ -158,10 +159,13 @@ const Navbar = ({ categories }: HeaderProps) => {
         </div>
       )}
 
-      {/* SubNavbar solo en desktop */}
-      <div className="lg:block hidden">
+      {/* SubNavbar fijo y oculto en pantallas pequeñas y tabletas hasta 1023px */}
+      <div className="fixed top-[74px] left-0 w-full bg-yellow-50 z-40 lg:block hidden">
         <SubNavbar categories={categories} />
       </div>
+
+      {/* Espacio para evitar que el contenido se superponga con el header y SubNavbar */}
+      <div className="mt-[90px] lg:mt-[134px]"></div>
     </>
   );
 };

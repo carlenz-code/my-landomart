@@ -17,12 +17,12 @@ const MegaMenu = ({ categories }: MegaMenuProps) => {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="h-[27px] bg-gray-200 text-black rounded-full flex items-center 
+        className="h-[27px] bg-transparent text-black rounded-full flex items-center 
         px-2 space-x-1 border border-transparent hover:bg-black hover:text-white"
         aria-label="Categorías del mega menú"
       >
         <span className="text-base">Categorías</span>
-        <ChevronDownIcon className="w-3 h-3" />
+        <ChevronDownIcon className="w-4 h-4" />
       </button>
 
       {isOpen && (

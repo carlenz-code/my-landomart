@@ -1,7 +1,7 @@
 import { League_Spartan } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
-import CarouselCategories from "@/components/ui/CarouselCategories";
+import CarouselCategories from "@/components/ui/Categories/CarouselCategories";
 import BannerCards from "@/components/ui/BannerCards";
 import Carousel from "@/components/ui/Carousel";
 import CarouselProducts from "@/components/products/CarouselProducts";

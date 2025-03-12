@@ -15,7 +15,7 @@ const CarouselHeader = ({ title, onPrev, onNext, onViewAll }: CarouselHeaderProp
         {onViewAll && (
           <button
             onClick={onViewAll}
-            className="bg-yellow-100 px-3 py-2 rounded-full hover:bg-yellow-200 focus:outline-none text-sm font-medium text-yellow-800"
+            className="bg-yellow-300 px-3 py-2 rounded-full hover:bg-yellow-200 focus:outline-none text-sm font-medium text-yellow-800"
             aria-label="Ver todo"
           >
             Ver todo
@@ -23,14 +23,14 @@ const CarouselHeader = ({ title, onPrev, onNext, onViewAll }: CarouselHeaderProp
         )}
         <button
           onClick={onPrev}
-          className="bg-yellow-100 p-2 rounded-full hover:bg-yellow-200 focus:outline-none"
+          className="bg-[#FFF7E6] p-2 rounded-full hover:bg-yellow-200 focus:outline-none"
           aria-label="Anterior"
         >
           <ChevronLeftIcon className="h-5 w-5 text-yellow-600" />
         </button>
         <button
           onClick={onNext}
-          className="bg-yellow-100 p-2 rounded-full hover:bg-yellow-200 focus:outline-none"
+          className="bg-[#FFF7E6] p-2 rounded-full hover:bg-yellow-200 focus:outline-none"
           aria-label="Siguiente"
         >
           <ChevronRightIcon className="h-5 w-5 text-yellow-600" />
