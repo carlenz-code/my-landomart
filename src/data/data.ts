@@ -1,3 +1,4 @@
+// data/data.ts
 export interface Category {
   id: number;
   name: string;
@@ -12,17 +13,17 @@ export interface Product {
   priceNow: number;
   priceBefore?: number;
   landoclubPrice?: number;
+  quantity?: number; // Aseguramos que quantity sea opcional
 }
 
 export const categories: Category[] = [
   { id: 1, name: "Embutidos", subcategories: ["Refrescos", "Jugos"], image: "/categories/embutidos.png" },
   { id: 2, name: "Bebidas", subcategories: ["Leches", "Yogures"], image: "/categories/bebidas.png" },
   { id: 3, name: "Frutas", subcategories: ["Jamón", "Salchichas"], image: "/categories/frutas.png" },
-  { id: 4, name: "Lacetos", subcategories: ["Tomates", "Zanahorias"], image: "/categories/lacteos.png" },
+  { id: 4, name: "Lacteos", subcategories: ["Tomates", "Zanahorias"], image: "/categories/lacteos.png" },
   { id: 5, name: "Limpieza", subcategories: ["Manzanas", "Bananas"], image: "/categories/limpieza.png" },
   { id: 6, name: "Panadería & Pastelería", subcategories: ["Pan", "Pasteles"], image: "/categories/panaderia.png" },
-  { id: 7, name: "Verdurs", subcategories: ["Comida", "Juguetes"], image: "/categories/verduras.png" },
-  
+  { id: 7, name: "Verduras", subcategories: ["Comida", "Juguetes"], image: "/categories/verduras.png" },
 ];
 
 export const products: Product[] = [
