@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import CarouselHeader from "../CarouselHeader";
+import CarouselHeader from "../ui/CarouselHeader";
 import CategoryCard from "./CategoryCard";
 import { categories as defaultCategories, Category } from "@/data/data";
 

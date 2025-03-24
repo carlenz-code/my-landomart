@@ -27,7 +27,7 @@ export const categories: Category[] = [
 ];
 
 export const products: Product[] = [
-  { id: 1, name: "Yogurt Mirafloresabor Fresa 2.5kb", image: "/products/danlac.webp", priceNow: 10.0, priceBefore: undefined, landoclubPrice: undefined },
+  { id: 1, name: "Yogurt Mirafloresabor Sabor a Fresa de lucuma Producto 2.5kb", image: "/products/danlac.webp", priceNow: 10.0, priceBefore: undefined, landoclubPrice: undefined },
   { id: 2, name: "Yogurt Mirafloresabor Fresa 2.5kb", image: "/products/gloria.webp", priceNow: 8.99, priceBefore: 10.0, landoclubPrice: undefined },
   { id: 3, name: "Yogurt Mirafloresabor Fresa 2.5kb", image: "/products/griego.webp", priceNow: 10.0, priceBefore: 12.0, landoclubPrice: 6.90 },
   { id: 4, name: "Yogurt Mirafloresabor Fresa 2.5kb", image: "/products/guanabana.webp", priceNow: 8.99, priceBefore: 10.0, landoclubPrice: undefined },

@@ -14,7 +14,7 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 import CartSidebar from "../cart/CartSidebar";
-import { Product } from "@/data/data";
+import { useCart } from "@/components/cart/CartContext"; // Importamos el hook del contexto
 
 // Definimos la interfaz para las categorías
 interface Category {
@@ -37,44 +37,10 @@ const Navbar: React.FC<HeaderProps> = ({ categories }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isCartSidebarOpen, setIsCartSidebarOpen] = useState<boolean>(false);
 
-  // Estado para el carrito
-  const [cartItems, setCartItems] = useState<Product[]>([
-    {
-      id: 1,
-      name: "Yogurt Gloria Griego Frutos Rojos Botella 950g",
-      image: "/products/danlac.webp",
-      priceNow: 5.40,
-      quantity: 1, // Esto debería ser válido porque quantity es opcional en Product
-    },
-    {
-      id: 2,
-      name: "Yogurt Gloria Griego Frutos Rojos Botella 950g",
-      image: "/products/danlac.webp",
-      priceNow: 5.40,
-      quantity: 1,
-    },
-  ]);
+  const { cartItems } = useCart(); // Usamos el contexto para obtener los ítems del carrito
 
   const toggleCartSidebar = () => {
     setIsCartSidebarOpen(!isCartSidebarOpen);
-  };
-
-  // Función para eliminar un producto del carrito
-  const removeItem = (itemId: number) => {
-    setCartItems(cartItems.filter((item) => item.id !== itemId));
-  };
-
-  // Función para actualizar la cantidad de un producto
-  const updateQuantity = (itemId: number, newQuantity: number) => {
-    if (newQuantity < 1) {
-      removeItem(itemId);
-    } else {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === itemId ? { ...item, quantity: newQuantity } : item
-        )
-      );
-    }
   };
 
   return (
@@ -145,6 +111,7 @@ const Navbar: React.FC<HeaderProps> = ({ categories }) => {
                 </div>
               </button>
             </div>
+
             {/* Carrito común */}
             <button
               className="flex bg-white h-[42px] justify-center rounded-full w-[42px] hover:bg-gray-200 items-center relative"
@@ -156,6 +123,7 @@ const Navbar: React.FC<HeaderProps> = ({ categories }) => {
                 {cartItems.length}
               </span>
             </button>
+            
           </div>
         </div>
       </header>
@@ -217,9 +185,6 @@ const Navbar: React.FC<HeaderProps> = ({ categories }) => {
       <CartSidebar
         isOpen={isCartSidebarOpen}
         onClose={toggleCartSidebar}
-        cartItems={cartItems}
-        removeItem={removeItem}
-        updateQuantity={updateQuantity}
       />
 
       {/* SubNavbar fijo y oculto en pantallas pequeñas y tabletas hasta 1023px */}

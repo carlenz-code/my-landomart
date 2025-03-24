@@ -1,13 +1,15 @@
+// components/ProductCard.tsx
 import { CSSProperties } from "react";
 import { StarIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
+import { useCart } from "@/components/cart/CartContext"; // Importamos el hook del contexto
 
 interface Product {
   id: number;
   name: string;
   image: string;
   priceNow: number;
-  priceBefore?: number; // Opcional, para la variación 2 y 3
-  landoclubPrice?: number; // Opcional, para la variación 3
+  priceBefore?: number;
+  landoclubPrice?: number;
 }
 
 interface ProductCardProps {
@@ -16,6 +18,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, style }: ProductCardProps) => {
+  const { addItem } = useCart(); // Usamos el hook para acceder a la función addItem
+
   const containerStyle: CSSProperties = {
     paddingLeft: "9.7px",
     paddingRight: "9.7px",
@@ -23,6 +27,11 @@ const ProductCard = ({ product, style }: ProductCardProps) => {
 
   // Verificar si la imagen es válida (no vacía y no undefined/null)
   const isImageValid = product.image && product.image.trim() !== "";
+
+  // Función para manejar el clic en "Agregar"
+  const handleAddToCart = () => {
+    addItem(product); // Añadimos el producto al carrito global
+  };
 
   return (
     <div className="flex-shrink-0 w-[185px] h-[271px]" style={style}>
@@ -50,7 +59,10 @@ const ProductCard = ({ product, style }: ProductCardProps) => {
             <StarIcon className="h-5 w-5" />
           </button>
           {/* Botón "Agregar" con icono de + en la esquina inferior izquierda */}
-          <button className="absolute bottom-2 left-2 bg-yellow-400 text-black rounded-full p-1 hover:bg-yellow-500 transition-colors flex items-center space-x-1 leading-none">
+          <button
+            className="absolute bottom-2 left-2 bg-yellow-400 text-black rounded-full p-1 hover:bg-yellow-500 transition-colors flex items-center space-x-1 leading-none"
+            onClick={handleAddToCart} // Conectamos el botón al contexto
+          >
             <PlusCircleIcon className="h-4 w-4" />
             <span className="text-xs pr-1">Agregar</span>
           </button>
